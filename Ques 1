@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+
+int binarySearch(int arr[], int n, int key) {
+    int left = 0, right = n - 1;
+
+    while (left <= right) {
+        int mid = left + (right - left) / 2; 
+
+        if (arr[mid] == key)  
+            return mid;
+
+        else if (arr[mid] < key) 
+            left = mid + 1;
+
+        else 
+            right = mid - 1;
+    }
+    return -1;
+}
+
+int linearSearch(int arr[], int n, int key) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key)
+            return i;
+    }
+    return -1;
+}
+
+int main() {
+    int arr[] = {2, 5, 8, 12, 16, 23, 38, 45, 56, 72, 91};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int key;
+
+    cout << "Enter element to search: ";
+    cin >> key;
+
+    int result = binarySearch(arr, n, key);
+
+    if (result != -1)
+        cout << "Element found at index " << result << " using Binary Search.\n";
+    else
+        cout << "Element not found using Binary Search.\n";
+
+    int linearResult = linearSearch(arr, n, key);
+
+    if (linearResult != -1)
+        cout << "Element found at index " << linearResult << " using Linear Search.\n";
+    else
+        cout << "Element not found using Linear Search.\n";
+
+    return 0;
+}
